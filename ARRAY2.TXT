@@ -1,0 +1,502 @@
+CHAPTER 1 — SWAPPING
+Definition
+
+Swapping means:
+
+exchanging two values.
+
+Example:
+
+a = 10
+b = 20
+
+After swap:
+
+a = 20
+b = 10
+Manual Swap Logic
+
+Need temporary storage.
+
+Steps:
+
+temp = a
+a = b
+b = temp
+
+Why?
+
+Because direct:
+
+a = b
+b = a
+
+loses original value.
+
+Array Swapping
+
+Example:
+
+arr = [10,20,30]
+
+Swap first and last:
+
+Before:
+
+[10,20,30]
+
+After:
+
+[30,20,10]
+
+Manual:
+
+temp = arr[0]
+arr[0] = arr[2]
+arr[2] = temp
+Python Shortcut
+arr[i], arr[j] = arr[j], arr[i]
+Complexity
+
+Time:
+
+O(1)
+
+Space:
+
+O(1)
+Important Uses
+
+Used in:
+
+reverse array
+sorting
+partition logic
+two pointer problems
+---------------------------------------------------------------------------------
+CHAPTER 2 — IN-PLACE vs EXTRA SPACE
+In-Place
+
+Definition:
+
+Modify original array directly.
+
+Example:
+
+arr = [1,2,3]
+arr[0] = 9
+
+Result:
+
+[9,2,3]
+
+Same array changed.
+
+Memory:
+
+O(1)
+
+Only few variables used.
+
+Extra Space
+
+Definition:
+
+Create new memory/new array.
+
+Example:
+
+arr = [1,2,3]
+new = [3,2,1]
+
+Original unchanged.
+
+Memory:
+
+O(n)
+Interview Rule
+
+Brute force:
+
+usually extra space
+
+Optimized:
+
+usually in-place
+----------------------------------------------------------------------
+
+CHAPTER 3 — POINTERS
+Pointer Meaning in DSA
+
+Pointer = index variable
+
+NOT scary C pointer.
+
+Example:
+
+left = 2
+
+means:
+
+pointer at position:
+
+2
+Golden Rule
+pointer = position
+arr[pointer] = value
+
+Example:
+
+arr = [10,20,30]
+left = 1
+
+Then:
+
+arr[left] = 20
+Important Difference
+
+Wrong:
+
+left = 20
+
+Correct:
+
+left = 1
+arr[left] = 20
+-------------------------------------------------------------------------------------
+CHAPTER 4 — TWO POINTERS
+Definition
+
+Use two index variables.
+
+Example:
+
+left = 0
+right = len(arr)-1
+
+Visual:
+
+L           R
+[1 2 3 4 5]
+Why Needed?
+
+When working from both ends.
+
+Examples:
+
+reverse
+palindrome
+pair sum
+Pointer Movement
+
+Move inward:
+
+left += 1
+right -= 1
+Stop Condition
+
+Correct:
+
+while left < right
+
+Why?
+
+Stop when:
+
+left == right
+
+or
+
+left > right
+Movement Patterns
+Both move
+left += 1
+right -= 1
+
+Used in reverse.
+
+One moves
+left += 1
+
+Used in scanning.
+
+Conditional movement
+
+Depends on condition.
+
+Used later in sum problems.
+
+Complexity
+
+Usually:
+
+O(n)
+
+Space:
+---------------------------------------------------------------------------------------------------
+O(1)
+CHAPTER 5 — SHIFTING
+Definition
+
+Move elements left or right.
+
+Values stay SAME.
+
+Positions change.
+
+Left Shift
+
+Example:
+
+[10,20,30,40]
+
+After left shift:
+
+[20,30,40,_]
+
+Movement:
+
+20 → index 0
+30 → index 1
+40 → index 2
+Right Shift
+
+Example:
+
+[10,20,30]
+
+After:
+
+[_,10,20,30]
+Important Rule
+
+Left shift:
+
+work FORWARD
+
+Right shift:
+
+work BACKWARD
+
+Why?
+
+To avoid overwriting values.
+
+Complexity
+
+Usually:
+
+O(n)
+Used In
+rotation
+insert/delete
+move zeros
+------------------------------------------------------------------------------------------------
+CHAPTER 6 — REVERSE vs ROTATION
+Reverse
+
+Definition:
+
+Complete opposite order.
+
+Example:
+
+[1,2,3,4]
+
+Reverse:
+
+[4,3,2,1]
+
+Logic:
+
+Outer swap:
+
+1 ↔ 4
+
+Inner swap:
+
+2 ↔ 3
+
+Pattern:
+
+two pointers
+
+Rotation
+
+Definition:
+
+Circular shifting.
+
+Right Rotate
+
+Example:
+
+[1,2,3,4]
+
+↓
+
+[4,1,2,3]
+Left Rotate
+
+Example:
+
+[1,2,3,4]
+
+↓
+
+[2,3,4,1]
+Difference
+
+Reverse:
+
+complete order changes
+
+Rotation:
+
+relative order preserved
+-----------------------------------------------------------------------------------------------
+
+CHAPTER 7 — TRACKING VARIABLES
+Definition
+
+Remember important information during traversal.
+
+Pattern:
+
+compare → update → continue
+Maximum Tracking
+
+Start:
+
+maxi = arr[0]
+
+Check:
+
+if current > maxi:
+
+update.
+
+Minimum Tracking
+
+Start:
+
+mini = arr[0]
+
+Check:
+
+if current < mini:
+
+update.
+
+Count Tracking
+
+Start:
+
+count = 0
+
+Update:
+
+count += 1
+
+when condition matches.
+
+Why arr[0] Initialization?
+
+Bad:
+
+maxi = 0
+
+Fails for:
+
+[-5,-2,-10]
+
+Good:
+
+maxi = arr[0]
+Common Mistakes
+
+Resetting inside loop:
+
+Wrong:
+
+for i in arr:
+    count = 0
+
+Forgetting update.
+--------------------------------------------------------------------------------
+CHAPTER 8 — MULTIPLE TRACKING VARIABLES
+Definition
+
+Track more than one important value.
+
+Example:
+
+largest
+second
+Why?
+
+One variable loses old information.
+
+Example:
+
+Need second largest.
+
+Tracking only largest is insufficient.
+
+Logic
+
+Case 1:
+
+New largest found:
+
+second = largest
+largest = current
+
+Case 2:
+
+Not largest, but better than second:
+
+second = current
+
+Case 3:
+
+Ignore.
+
+Important Rule
+
+ORDER matters.
+
+Wrong:
+
+largest = current
+second = largest
+
+Old value lost.
+
+Correct:
+
+second = largest
+largest = current
+Used In
+second largest
+second smallest
+stock problems
+Kadane
+DP later
+-------------------------------------------------
+GOLDEN DAY 2 RULES
+
+Memorize these.
+
+pointer = position
+arr[pointer] = value
+swap = exchange values
+in-place = same array
+extra space = new array
+two pointers = both ends
+left shift = forward
+right shift = backward
+reverse = mirror
+rotation = circular shift
+tracking = remember during loop
+multiple tracking = remember multiple things
